@@ -12,6 +12,7 @@
 |ChatPaper|输入论文，然后根据论文内容对话|[ChatPaper.yml](./workflow/ChatPaper.yml)|![](./workflow/ChatPaper-1.png) ![](./workflow/ChatPaper-2.png)|
 |翻译-反思工作流|模拟了人类翻译专家的思考过程，首先进行直接翻译，然后进行反思，根据反对初始翻译进行优化|[TranslationReflection](./workflow/TranslationReflection.yml)|![](./workflow/TranslationReflection.png)|
 |模型PK|同一个问题，多个大模型进行PK|[ModelPk](./workflow/ModelPK.yml)|![](./workflow/ModelPK.png)|
+|知识库文档分类|根据文档分段进行分类|[KnowledgeDocumentClassificationChunkByChunk.yml](./workflow/KnowledgeDocumentClassificationChunkByChunk.yml)|![](./workflow/KnowledgeDocumentClassificationChunkByChunk.png)|
 
 ## 智能体
 

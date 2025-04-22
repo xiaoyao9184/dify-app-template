@@ -1,0 +1,1128 @@
+app:
+  description: 'need dify 1.2.0+'
+  icon: 🧩
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Knowledge Document Classification Chunk by Chunk
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 2750b42b-96d6-428e-92a9-21e603dfeb4d
+    name: dataset_host
+    selector:
+    - conversation
+    - dataset_host
+    value: api:5001
+    value_type: string
+  - description: ''
+    id: 6c67e4a5-f6d0-4c1b-9b74-5fc6052e6e78
+    name: dataset_key
+    selector:
+    - conversation
+    - dataset_key
+    value: dataset-YNcow9NDZeGA1f2tFokkX0Sr
+    value_type: string
+  - description: ''
+    id: 6a3978c9-a8bf-4dec-9db8-d2eb1973a0c9
+    name: dataset_id
+    selector:
+    - conversation
+    - dataset_id
+    value: 2db221e9-9f87-4387-aec2-bc494dce70d7
+    value_type: string
+  - description: ''
+    id: d8a1f03c-20c7-4ee1-9d72-3e37c554dd7b
+    name: loop_index
+    selector:
+    - conversation
+    - loop_index
+    value: 0
+    value_type: number
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: Input document name for classification
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - pdf
+    - png
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: loop-start
+        targetType: code
+      id: 1745208760213start-source-1745214905943-target
+      source: 1745208760213start
+      sourceHandle: source
+      target: '1745214905943'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: code
+        targetType: question-classifier
+      id: 1745214905943-source-1745208953549-target
+      source: '1745214905943'
+      sourceHandle: source
+      target: '1745208953549'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: question-classifier
+        targetType: variable-aggregator
+      id: 1745208953549-1-1745215580037-target
+      source: '1745208953549'
+      sourceHandle: '1'
+      target: '1745215580037'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: question-classifier
+        targetType: variable-aggregator
+      id: 1745208953549-2-1745215580037-target
+      source: '1745208953549'
+      sourceHandle: '2'
+      target: '1745215580037'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: answer
+        targetType: assigner
+      id: 1745215639027-source-1745208921300-target
+      source: '1745215639027'
+      sourceHandle: source
+      target: '1745208921300'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: loop
+        targetType: answer
+      id: 1745208760213-source-1745208874980-target
+      source: '1745208760213'
+      sourceHandle: source
+      target: '1745208874980'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: assigner
+      id: 1745208874980-source-1745215795492-target
+      source: '1745208874980'
+      sourceHandle: source
+      target: '1745215795492'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: if-else
+        targetType: answer
+      id: 1745216027554-false-1745216100194-target
+      source: '1745216027554'
+      sourceHandle: 'false'
+      target: '1745216100194'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: variable-aggregator
+        targetType: answer
+      id: 1745215580037-source-1745215639027-target
+      source: '1745215580037'
+      sourceHandle: source
+      target: '1745215639027'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: assigner
+        targetType: if-else
+      id: 1745208921300-source-1745216027554-target
+      source: '1745208921300'
+      sourceHandle: source
+      target: '1745216027554'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        sourceType: answer
+        targetType: loop-end
+      id: 1745216100194-source-1745216201642-target
+      source: '1745216100194'
+      sourceHandle: source
+      target: '1745216201642'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1745198320107-source-1745219357367-target
+      source: '1745198320107'
+      sourceHandle: source
+      target: '1745219357367'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: if-else
+      id: 1745219357367-source-1745219882364-target
+      source: '1745219357367'
+      sourceHandle: source
+      target: '1745219882364'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1745219882364-true-1745218018676-target
+      source: '1745219882364'
+      sourceHandle: 'true'
+      target: '1745218018676'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1745219882364-false-1745220757041-target
+      source: '1745219882364'
+      sourceHandle: 'false'
+      target: '1745220757041'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1745218018676-source-1745220859161-target
+      source: '1745218018676'
+      sourceHandle: source
+      target: '1745220859161'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1745220859161-true-1745220733530-target
+      source: '1745220859161'
+      sourceHandle: 'true'
+      target: '1745220733530'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1745220859161-89a94425-adb7-43ce-b4c2-f7e9f5a1e0be-1745221155408-target
+      source: '1745220859161'
+      sourceHandle: 89a94425-adb7-43ce-b4c2-f7e9f5a1e0be
+      target: '1745221155408'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1745220859161-false-1745221269889-target
+      source: '1745220859161'
+      sourceHandle: 'false'
+      target: '1745221269889'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1745221269889-source-1745220906536-target
+      source: '1745221269889'
+      sourceHandle: source
+      target: '1745220906536'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1745220733530-source-1745221844029-target
+      source: '1745220733530'
+      sourceHandle: source
+      target: '1745221844029'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1745221844029-source-1745217875740-target
+      source: '1745221844029'
+      sourceHandle: source
+      target: '1745217875740'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: loop
+      id: 1745217875740-source-1745208760213-target
+      source: '1745217875740'
+      sourceHandle: source
+      target: '1745208760213'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1745198320107'
+      position:
+        x: -872.2944835432719
+        y: -137.28168588772098
+      positionAbsolute:
+        x: -872.2944835432719
+        y: -137.28168588772098
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        break_conditions:
+        - comparison_operator: ≥
+          id: 5ff79b34-5f2b-4889-967d-cad2b938b528
+          numberVarType: variable
+          value: '{{#1745221844029.total#}}'
+          varType: number
+          variable_selector:
+          - conversation
+          - loop_index
+        desc: segment processing
+        error_handle_mode: terminated
+        height: 881
+        logical_operator: and
+        loop_count: 100
+        loop_variables:
+        - id: 130c5a3b-1b21-4404-a3d6-ad524c946037
+          label: items
+          value:
+          - '1745221844029'
+          - segments
+          value_type: variable
+          var_type: array[object]
+        selected: false
+        start_node_id: 1745208760213start
+        title: 'Loop: seg'
+        type: loop
+        width: 1435
+      height: 881
+      id: '1745208760213'
+      position:
+        x: -872.2944835432719
+        y: 522.8784061319269
+      positionAbsolute:
+        x: -872.2944835432719
+        y: 522.8784061319269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1435
+      zIndex: 1
+    - data:
+        desc: ''
+        isInLoop: true
+        selected: false
+        title: ''
+        type: loop-start
+      draggable: false
+      height: 48
+      id: 1745208760213start
+      parentId: '1745208760213'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: -848.2944835432719
+        y: 590.8784061319269
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-loop-start
+      width: 44
+      zIndex: 1002
+    - data:
+        answer: '
+
+          Classification completed'
+        desc: classification completed
+        selected: false
+        title: 'Answer: end'
+        type: answer
+        variables: []
+      height: 130
+      id: '1745208874980'
+      position:
+        x: 642.6919159744315
+        y: 522.8784061319269
+      positionAbsolute:
+        x: 642.6919159744315
+        y: 522.8784061319269
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: loop_index++
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: constant
+          operation: +=
+          value: 1
+          variable_selector:
+          - conversation
+          - loop_index
+          write_mode: over-write
+        loop_id: '1745208760213'
+        selected: false
+        title: 'Variable Assigner: ++'
+        type: assigner
+        version: '2'
+      height: 116
+      id: '1745208921300'
+      parentId: '1745208760213'
+      position:
+        x: 419.12050710376366
+        y: 359.9091632360404
+      positionAbsolute:
+        x: -453.17397643950824
+        y: 882.7875693679673
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        classes:
+        - id: '1'
+          name: include 2023 year
+        - id: '2'
+          name: not include
+        desc: ''
+        instructions: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen2.5:7b
+          provider: langgenius/ollama/ollama
+        query_variable_selector:
+        - '1745214905943'
+        - item_content
+        selected: false
+        title: Question Classifier
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 172
+      id: '1745208953549'
+      parentId: '1745208760213'
+      position:
+        x: 418.25636571921683
+        y: 65
+      positionAbsolute:
+        x: -454.03811782405506
+        y: 587.8784061319269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        code: "\ndef main(items, index) -> dict:\n    return {\n        \"item\":\
+          \ items[index],\n        \"item_content\": items[index]['content']\n   \
+          \ }\n"
+        code_language: python3
+        desc: extract index
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        outputs:
+          item:
+            children: null
+            type: object
+          item_content:
+            children: null
+            type: string
+        selected: false
+        title: Code：item
+        type: code
+        variables:
+        - value_selector:
+          - '1745208760213'
+          - items
+          variable: items
+        - value_selector:
+          - conversation
+          - loop_index
+          variable: index
+      height: 82
+      id: '1745214905943'
+      parentId: '1745208760213'
+      position:
+        x: 116
+        y: 65
+      positionAbsolute:
+        x: -756.2944835432719
+        y: 587.8784061319269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        output_type: string
+        selected: false
+        title: Variable Aggregator
+        type: variable-aggregator
+        variables:
+        - - '1745208953549'
+          - class_name
+      height: 108
+      id: '1745215580037'
+      parentId: '1745208760213'
+      position:
+        x: 735.6804920892271
+        y: 158.26234484596944
+      positionAbsolute:
+        x: -136.61399145404482
+        y: 681.1407509778963
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        answer: '
+
+          Segment {{#conversation.loop_index#}}: {{#1745208953549.class_name#}}
+
+          ```markdown
+
+          {{#1745214905943.item_content#}}
+
+          ```'
+        desc: segment classification status
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        selected: false
+        title: 'Answer: seg status'
+        type: answer
+        variables: []
+      height: 187
+      id: '1745215639027'
+      parentId: '1745208760213'
+      position:
+        x: 108.06314219155581
+        y: 359.8654076777939
+      positionAbsolute:
+        x: -764.2313413517161
+        y: 882.7438138097208
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: reset loop_index
+        items:
+        - input_type: constant
+          operation: set
+          value: 0
+          variable_selector:
+          - conversation
+          - loop_index
+          write_mode: over-write
+        selected: false
+        title: 'Variable Assigner: 0'
+        type: assigner
+        version: '2'
+      height: 116
+      id: '1745215795492'
+      position:
+        x: 925.3719043601516
+        y: 522.8784061319269
+      positionAbsolute:
+        x: 925.3719043601516
+        y: 522.8784061319269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 45629948-5bf9-4d8e-a876-4aad6163b8b0
+            value: not include
+            varType: string
+            variable_selector:
+            - '1745208953549'
+            - class_name
+          id: 'true'
+          logical_operator: and
+        desc: class name is ‘not include’
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        selected: false
+        title: 'IF/ELSE: fail-fast'
+        type: if-else
+      height: 154
+      id: '1745216027554'
+      parentId: '1745208760213'
+      position:
+        x: 106.523719404806
+        y: 606.6995222467273
+      positionAbsolute:
+        x: -765.7707641384659
+        y: 1129.5779283786542
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        answer: '
+
+          Fail-fast, terminate subsequent classification'
+        desc: fail-fast
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        selected: false
+        title: 'Answer: fail-fast'
+        type: answer
+        variables: []
+      height: 146
+      id: '1745216100194'
+      parentId: '1745208760213'
+      position:
+        x: 420.5710443887421
+        y: 609.9889631627697
+      positionAbsolute:
+        x: -451.7234391545298
+        y: 1132.8673692946966
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1745208760213'
+        selected: false
+        title: Exit Loop
+        type: loop-end
+      height: 54
+      id: '1745216201642'
+      parentId: '1745208760213'
+      position:
+        x: 723.595042653655
+        y: 609.8515606924951
+      positionAbsolute:
+        x: -148.69944088961688
+        y: 1132.729966824422
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-simple
+      width: 244
+      zIndex: 1002
+    - data:
+        answer: Need to classify {{#1745221844029.total#}} segments
+        desc: ''
+        selected: false
+        title: 'Answer: seg total'
+        type: answer
+        variables: []
+      height: 121
+      id: '1745217875740'
+      position:
+        x: 321.66421728340634
+        y: 186.65125022144235
+      positionAbsolute:
+        x: 321.66421728340634
+        y: 186.65125022144235
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(body: str) -> dict:\n    import json\n    try:\n        json_obj\
+          \ = json.loads(body)\n        if json_obj['total'] == 1:\n            return\
+          \ {\n                'json': json_obj,\n                'total': json_obj['total'],\n\
+          \                'doc_id': json_obj['data'][0]['id']\n            }\n  \
+          \      else:\n            return {\n                'json': json_obj,\n\
+          \                'total': json_obj['total'],\n                'doc_id':\
+          \ ''\n            }\n    except json.JSONDecodeError:\n        return {\n\
+          \            'json': {},\n            'total': -1,\n            'doc_id':\
+          \ ''\n        }"
+        code_language: python3
+        desc: 'load json obj of documents
+
+          and get frist item'
+        outputs:
+          doc_id:
+            children: null
+            type: string
+          json:
+            children: null
+            type: object
+          total:
+            children: null
+            type: number
+        selected: false
+        title: 'Code: dos+doc_id'
+        type: code
+        variables:
+        - value_selector:
+          - '1745219357367'
+          - body
+          variable: body
+      height: 98
+      id: '1745218018676'
+      position:
+        x: -1.165920460613762
+        y: -137.28168588772098
+      positionAbsolute:
+        x: -1.165920460613762
+        y: -137.28168588772098
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config:
+            api_key: '{{#conversation.dataset_key#}}'
+            type: bearer
+          type: api-key
+        body:
+          data: []
+          type: none
+        desc: 'get documents
+
+          by ''Conversation Variables'' dataset_id
+
+          from dify Knowledge'
+        headers: ''
+        method: GET
+        params: keyword:{{#sys.query#}}
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 'HTTP Request: doc'
+        type: http-request
+        url: http://{{#conversation.dataset_host#}}/v1/datasets/{{#conversation.dataset_id#}}/documents
+        variables: []
+      height: 218
+      id: '1745219357367'
+      position:
+        x: -561.0261248494994
+        y: -137.28168588772098
+      positionAbsolute:
+        x: -561.0261248494994
+        y: -137.28168588772098
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 40173745-8f6b-4c3e-960f-be2569af0b86
+            value: '200'
+            varType: number
+            variable_selector:
+            - '1745219357367'
+            - status_code
+          id: 'true'
+          logical_operator: and
+        desc: check response code
+        selected: false
+        title: 'IF/ELSE: code'
+        type: if-else
+      height: 154
+      id: '1745219882364'
+      position:
+        x: -280.48644447342
+        y: -137.28168588772098
+      positionAbsolute:
+        x: -280.48644447342
+        y: -137.28168588772098
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config:
+            api_key: '{{#conversation.dataset_key#}}'
+            type: bearer
+          type: api-key
+        body:
+          data: []
+          type: none
+        desc: "get segments\nby doc_id and 'Conversation Variables' dataset_id \n\
+          from dify Knowledge "
+        headers: ''
+        method: get
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 'HTTP Request: seg'
+        type: http-request
+        url: http://{{#conversation.dataset_host#}}/v1/datasets/{{#conversation.dataset_id#}}/documents/{{#1745218018676.doc_id#}}/segments
+        variables: []
+      height: 253
+      id: '1745220733530'
+      position:
+        x: -561.0261248494994
+        y: 186.65125022144235
+      positionAbsolute:
+        x: -561.0261248494994
+        y: 186.65125022144235
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: error get documents
+        desc: error response code
+        selected: false
+        title: 'Answer: doc error'
+        type: answer
+        variables: []
+      height: 130
+      id: '1745220757041'
+      position:
+        x: -1.165920460613762
+        y: -29.738822892279483
+      positionAbsolute:
+        x: -1.165920460613762
+        y: -29.738822892279483
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 3c460a6a-c85d-4bbf-a72e-d8e511a06d9c
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1745218018676'
+            - total
+          id: 'true'
+          logical_operator: and
+        - case_id: 89a94425-adb7-43ce-b4c2-f7e9f5a1e0be
+          conditions:
+          - comparison_operator: '='
+            id: b057ef5f-9b00-4b20-a6ad-5198f7079bb5
+            value: '0'
+            varType: number
+            variable_selector:
+            - '1745218018676'
+            - total
+          id: 89a94425-adb7-43ce-b4c2-f7e9f5a1e0be
+          logical_operator: and
+        desc: switch documents total
+        selected: false
+        title: 'IF/ELSE: doc total'
+        type: if-else
+      height: 202
+      id: '1745220859161'
+      position:
+        x: 321.66421728340634
+        y: -137.28168588772098
+      positionAbsolute:
+        x: 321.66421728340634
+        y: -137.28168588772098
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 'Query {{#1745218018676.total#}} documents, please enter the full
+          document name to select the document to process:
+
+          ```markdown
+
+          {{#1745221269889.md#}}
+
+          ```'
+        desc: multiple documents
+        selected: false
+        title: 'Answer: doc multi'
+        type: answer
+        variables: []
+      height: 200
+      id: '1745220906536'
+      position:
+        x: 925.3719043601516
+        y: 27.22889586757269
+      positionAbsolute:
+        x: 925.3719043601516
+        y: 27.22889586757269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: No documents found, please re-enter the document name
+        desc: no document
+        selected: false
+        title: 'Answer: doc empty'
+        type: answer
+        variables: []
+      height: 146
+      id: '1745221155408'
+      position:
+        x: 925.3719043601516
+        y: -137.28168588772098
+      positionAbsolute:
+        x: 925.3719043601516
+        y: -137.28168588772098
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(json: dict) -> dict:\n    unique_names = list(item['name']\
+          \ for item in json['data'])\n    return {\n        \"md\": \"\\n\".join(unique_names)\n\
+          \    }"
+        code_language: python3
+        desc: list document names
+        outputs:
+          md:
+            children: null
+            type: string
+        selected: false
+        title: 'Code: doc names'
+        type: code
+        variables:
+        - value_selector:
+          - '1745218018676'
+          - json
+          variable: json
+      height: 82
+      id: '1745221269889'
+      position:
+        x: 642.6919159744315
+        y: 27.22889586757269
+      positionAbsolute:
+        x: 642.6919159744315
+        y: 27.22889586757269
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(body: str) -> dict:\n    import json\n    try:\n        json_obj\
+          \ = json.loads(body)\n        return {\n            'json': json_obj,\n\
+          \            'total': json_obj['total'],\n            'segments': json_obj['data']\n\
+          \        }\n    except json.JSONDecodeError:\n        return {\n       \
+          \     'json': {},\n            'total': -1,\n            'segments': {}\n\
+          \        }"
+        code_language: python3
+        desc: load json obj of segments
+        outputs:
+          json:
+            children: null
+            type: object
+          segments:
+            children: null
+            type: array[object]
+          total:
+            children: null
+            type: number
+        selected: false
+        title: 'Code: seg'
+        type: code
+        variables:
+        - value_selector:
+          - '1745220733530'
+          - body
+          variable: body
+      height: 82
+      id: '1745221844029'
+      position:
+        x: -1.165920460613762
+        y: 186.65125022144235
+      positionAbsolute:
+        x: -1.165920460613762
+        y: 186.65125022144235
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 521.1696102384373
+      y: 150.7680410440392
+      zoom: 0.5000000000000004
